@@ -12,6 +12,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use('/api/v1', v1);
+app.use('/', (req, res) => {
+    res.send("Welcome to the API");
+});
 
 
 
