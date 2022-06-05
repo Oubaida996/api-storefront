@@ -1,36 +1,49 @@
-"use strict";
+'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
-const v1 = require('./auth/routes/v1.js');
-
-
-const handler500 = require("./auth/error-handler/500");
-const handler404 = require("./auth/error-handler/404");
+const logger = require('./middleware/logger');
+const foodsRoute = require('./routes/food.route.js');
+const clothesRoute = require('./routes/clothes.route.js');
+const hadle500 = require("./error-handlers/500");
+const hadle404 = require("./error-handlers/404");
 
 const app = express();
-app.use(express.json());
-app.use(cors());
-app.use('/api/v1', v1);
-app.use('/', (req, res) => {
-    res.send("Welcome to the API");
+
+
+// Global Middlewares
+app.use(express.json()); // access the body
+app.use(cors()); //install the package
+app.use(logger);
+app.use(foodsRoute);
+app.use(clothesRoute);
+// // access the body
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cors());
+// app.use(bodyParser.json());// or // app.use(express.json()); 
+
+
+app.get('/', (req, res) => {
+    res.send("Home Page");
 });
 
 
+app.use(hadle500);
+app.use("*", hadle404);
 
-function start(port) {
 
-    app.listen(port, () => {
-        console.log(`server is running on port ${port}`);
+
+function start(PORT) {
+    app.listen(PORT, () => {
+        console.log(`Server running at port ${PORT}`);
     })
-
 }
 
-app.use("*", handler404);
-app.use(handler500);
 
 
 module.exports = {
     app: app,
     start: start
 }
+
