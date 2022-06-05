@@ -31,7 +31,7 @@ let ProductsCollection = new Collection(ProductsTable);
 
 module.exports = {
     db: db,
-    Categories: categoryCollection,
-    Products: ProductsCollection
+    categories: categoryCollection,
+    products: ProductsCollection
 
 }
