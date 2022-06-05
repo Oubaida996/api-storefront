@@ -29,7 +29,7 @@ router.delete('/:model/:id', deleteModelById);
 
 async function getModels(req, res) {
     let table = await req.model.getData();
-    res.json('table');
+    res.json(table);
 }
 
 async function getModelById(req, res) {
@@ -42,7 +42,7 @@ async function createModels(req, res) {
     let { body } = req;
     console.log(body);
     let newRecord = await req.model.createData(body);
-    res.json(newRecord);
+    res.json(body);
 }
 
 async function updateModelById(req, res) {
