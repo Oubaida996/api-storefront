@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const logger = require('./middleware/logger');
+// const logger = require('./middleware/logger');
 const foodsRoute = require('./routes/food.route.js');
 const clothesRoute = require('./routes/clothes.route.js');
 const hadle500 = require("./error-handlers/500");
@@ -15,7 +15,7 @@ const app = express();
 // Global Middlewares
 app.use(express.json()); // access the body
 app.use(cors()); //install the package
-app.use(logger);
+// app.use(logger);
 app.use(foodsRoute);
 app.use(clothesRoute);
 // // access the body
