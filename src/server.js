@@ -11,7 +11,6 @@ const handler404 = require("./auth/error-handler/404");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(UsersRouter);
 app.use('/api/v1', v1);
 
 
