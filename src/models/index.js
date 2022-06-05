@@ -3,12 +3,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const Foods = require('./food');
 const Clothes = require('./clothes');
-require('dotenv').config();
 
 
 //prepare the connection
-const POSTGRES_URL = (process.env.DATABASE_URL || "postgres://obieda:0000@localhost:5432/movie");
-
+const POSTGRES_URL = process.env.NODE_ENV === 'test' ? 'sqlite:memory:' : process.env.DATABASE_URL;
 let sequelizeOptions = {
   dialectOptions: {
     ssl: {
@@ -18,7 +16,7 @@ let sequelizeOptions = {
   }
 }
 
-let sequelize = new Sequelize(POSTGRES_URL, dialectOptions);
+let sequelize = new Sequelize(POSTGRES_URL, sequelizeOptions);
 
 // sequelize.sync({force :false}).then(()=>{
 //     console.log('created');
