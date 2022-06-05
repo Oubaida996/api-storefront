@@ -24,4 +24,4 @@ const Categories = (db, DataTypes) => db.define('categories',
 );
 
 
-module.exports = Foods;
+module.exports = Categories;

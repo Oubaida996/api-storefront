@@ -41,4 +41,4 @@ const Products = (db, DataTypes) => db.define('products',
 );
 
 
-module.exports = Clothes;
+module.exports = Products;
